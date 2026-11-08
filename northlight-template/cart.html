@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cart — Northlight</title>
+    <meta
+      name="description"
+      content="Your Northlight shopping cart and order summary."
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+
+  <body data-requires-auth>
+    <!-- ============================ Top bar ============================ -->
+    <header class="topbar">
+      <div class="topbar__inner">
+        <!-- ===== LOGO (left) ==================================================
+             Replace the dashed placeholder below with your own image:
+
+                 <img src="logo.png" alt="Your store" class="topbar__logo-img" />
+
+             PNG or SVG, any shape. It is centred vertically and scaled to fit
+             the header height (--header-height in styles.css).
+             ================================================================== -->
+
+        <img src="logo.png" alt="Your store" class="topbar__logo-img" />
+
+        <!-- ===== CENTRE: balance + wallet ================================== -->
+        <div class="topbar__center">
+          <a class="wallet" href="deposit.html" aria-label="Wallet balance">
+            <span class="wallet__cur">$</span>
+            <span class="js-balance">24.00</span>
+          </a>
+          <a class="btn btn--wallet" href="deposit.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+            </svg>
+            <span class="btn__label">Wallet</span>
+          </a>
+        </div>
+
+        <!-- ===== RIGHT: messages, cart, profile ============================ -->
+        <div class="topbar__actions">
+          <a class="icon-btn" href="messages.html" aria-label="Messages">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v2.2l8 5 8-5V6H4Zm16 5.9-7.4 4.6a1.2 1.2 0 0 1-1.2 0L4 11.9V18h16v-6.1Z"/>
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="cart.html" aria-label="Shopping cart" id="cartBtn">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M7 4a3 3 0 0 1 10 0h2.5a1 1 0 0 1 1 .9l1 12A2 2 0 0 1 19.5 19h-15a2 2 0 0 1-2-2.1l1-12a1 1 0 0 1 1-.9H7Zm2 0h6a1 1 0 0 0-2-2h-2a1 1 0 0 0-2 2Z"/>
+            </svg>
+            <span class="badge" id="cartCount" hidden>0</span>
+          </a>
+
+        <div class="menu" data-menu>
+          <button
+            class="tab"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="ordersMenu"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> Orders <svg class="tab__chev" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg>
+          </button>
+          <div class="menu__panel" id="ordersMenu" hidden>
+            <a class="menu__item" href="#">All orders</a>
+            <a class="menu__item" href="#">Downloads</a>
+            <a class="menu__item" href="#">Invoices</a>
+          </div>
+        </div>
+
+        <a class="tab" href="tickets.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> Tickets
+        </a>
+      </div>
+    </nav>
+
+    <!-- ============================== Cart =============================== -->
+    <main class="page page--cart">
+      <section class="cart" aria-labelledby="cartTitle">
+        <header class="cart__head">
+          <h1 class="cart__title" id="cartTitle">Shopping Cart</h1>
+        </header>
+
+        <div class="cart__body">
+          <!-- Empty state: shown until something is added. -->
+          <p class="cart__empty" id="cartEmpty">Your cart is empty.</p>
+
+          <!-- Filled state: one row per item, drawn by cart.js. -->
+          <ul class="cart__list" id="cartList" aria-label="Items in your cart" hidden></ul>
+
+          <!-- Order summary: same panel in both states, total shows $0.00 when empty. -->
+          <div class="summary">
+            <h2 class="summary__title">Order Summary</h2>
+
+            <p class="summary__row">
+              <span class="summary__label">Total Price:</span>
+              <span class="summary__total" id="cartTotal">$0.00</span>
+            </p>
+
+            <button class="summary__btn" type="button" id="confirmOrder">
+              Confirm Order
+            </button>
+
+            <p class="summary__note" id="summaryNote" role="status" hidden></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/js/menu.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+    <script src="assets/js/session.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bundles — Northlight</title>
+    <meta
+      name="description"
+      content="Every bundle the shop sells, one price each."
+    />
+    <link rel="stylesheet" href="assets/css/bundles.css" />
+  </head>
+
+  <body data-requires-auth>
+    <!-- ============================ Top bar ============================ -->
+    <header class="topbar">
+      <div class="topbar__inner">
+        <!-- ===== LOGO (left) ==================================================
+             Replace the dashed placeholder below with your own image:
+
+                 <img src="logo.png" alt="Your store" class="topbar__logo-img" />
+
+             PNG or SVG, any shape. It is centred vertically and scaled to fit
+             the header height (--header-height in styles.css).
+             ================================================================== -->
+
+        </a>
+        <img src="logo.png" alt="Your store" class="topbar__logo-img" />
+
+        <!-- ===== CENTRE: balance + wallet ================================== -->
+        <div class="topbar__center">
+          <a class="wallet" href="deposit.html" aria-label="Wallet balance">
+            <span class="wallet__cur">$</span>
+            <span class="js-balance">0.00</span>
+          </a>
+          <a class="btn btn--wallet" href="deposit.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+            </svg>
+            <span class="btn__label">Wallet</span>
+          </a>
+        </div>
+
+        <!-- ===== RIGHT: messages, cart, profile ============================ -->
+        <div class="topbar__actions">
+          <a class="icon-btn" href="messages.html" aria-label="Messages">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v2.2l8 5 8-5V6H4Zm16 5.9-7.4 4.6a1.2 1.2 0 0 1-1.2 0L4 11.9V18h16v-6.1Z"/>
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="cart.html" aria-label="Shopping cart" id="cartBtn">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M7 4a3 3 0 0 1 10 0h2.5a1 1 0 0 1 1 .9l1 12A2 2 0 0 1 19.5 19h-15a2 2 0 0 1-2-2.1l1-12a1 1 0 0 1 1-.9H7Zm2 0h6a1 1 0 0 0-2-2h-2a1 1 0 0 0-2 2Z"/>
+            </svg>
+            <span class="badge" id="cartCount" hidden>0</span>
+          </a>
+
+        <div class="menu" data-menu>
+          <button
+            class="tab"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="ordersMenu"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> Orders <svg class="tab__chev" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg>
+          </button>
+          <div class="menu__panel" id="ordersMenu" hidden>
+            <a class="menu__item" href="orders.html">All orders</a>
+            <a class="menu__item" href="#">Downloads</a>
+            <a class="menu__item" href="#">Invoices</a>
+          </div>
+        </div>
+
+        <a class="tab" href="tickets.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> Tickets
+        </a>
+      </div>
+    </nav>
+
+    <!-- ============================= Tickets ============================= -->
+    <main class="page page--bundles">
+      <section class="bundles" aria-labelledby="bundlesTitle">
+        <h1 class="sr-only" id="bundlesTitle">Bundles</h1>
+
+        <div class="bundles__bar">
+          <label class="bundles__show" for="bundleSize">
+            Show
+            <select class="bundles__select" id="bundleSize">
+              <option value="10" selected>10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            Entries
+          </label>
+
+          <div class="bundles__search">
+            <button class="bundles__searchbtn" type="button" id="bundleSearchBtn" aria-label="Search bundles">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+            </button>
+            <input
+              class="bundles__input"
+              id="bundleSearch"
+              type="search"
+              autocomplete="off"
+              aria-label="Search service name"
+            />
+          </div>
+        </div>
+
+        <div class="bundles__scroll">
+          <table class="btable">
+            <thead>
+              <tr>
+                <th scope="col">Service Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="bundleRows"></tbody>
+          </table>
+        </div>
+
+        <p class="bundles__empty" id="bundleEmpty" hidden>No bundle matches that search.</p>
+        <p class="bundles__note" id="bundleNote" role="status" hidden></p>
+
+        <nav class="bpager" id="bundlePager" aria-label="Bundle pages"></nav>
+      </section>
+    </main>
+
+
+    <script src="assets/js/menu.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+    <script src="assets/data/bundles-data.js" defer></script>
+    <script src="assets/js/menu.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+    <script src="assets/js/bundles.js" defer></script>
+    <script src="assets/js/session.js" defer></script>
+    <script src="assets/js/session.js" defer></script>
+  </body>
+</html>

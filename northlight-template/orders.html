@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All orders — Northlight</title>
+    <meta
+      name="description"
+      content="Every item this account has bought."
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+
+  <body data-requires-auth>
+    <!-- ============================ Top bar ============================ -->
+    <header class="topbar">
+      <div class="topbar__inner">
+        <!-- ===== LOGO (left) ==================================================
+             Replace the dashed placeholder below with your own image:
+
+                 <img src="logo.png" alt="Your store" class="topbar__logo-img" />
+
+             PNG or SVG, any shape. It is centred vertically and scaled to fit
+             the header height (--header-height in styles.css).
+             ================================================================== -->
+        <a class="topbar__logo" href="index.html" aria-label="Home">
+          <span class="logo-ph" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <circle cx="9" cy="10" r="1.6" />
+              <path d="m4.5 18 5-5 3.5 3.5L16 13l3.5 3.5" />
+            </svg>
+            <span>YOUR LOGO</span>
+          </span>
+        </a>
+
+        <!-- ===== CENTRE: balance + wallet ================================== -->
+        <div class="topbar__center">
+          <a class="wallet" href="deposit.html" aria-label="Wallet balance">
+            <span class="wallet__cur">$</span>
+            <span class="js-balance">0.00</span>
+          </a>
+          <a class="btn btn--wallet" href="deposit.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+            </svg>
+            <span class="btn__label">Wallet</span>
+          </a>
+        </div>
+
+        <!-- ===== RIGHT: messages, cart, profile ============================ -->
+        <div class="topbar__actions">
+          <a class="icon-btn" href="messages.html" aria-label="Messages">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v2.2l8 5 8-5V6H4Zm16 5.9-7.4 4.6a1.2 1.2 0 0 1-1.2 0L4 11.9V18h16v-6.1Z"/>
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="cart.html" aria-label="Shopping cart" id="cartBtn">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M7 4a3 3 0 0 1 10 0h2.5a1 1 0 0 1 1 .9l1 12A2 2 0 0 1 19.5 19h-15a2 2 0 0 1-2-2.1l1-12a1 1 0 0 1 1-.9H7Zm2 0h6a1 1 0 0 0-2-2h-2a1 1 0 0 0-2 2Z"/>
+            </svg>
+            <span class="badge" id="cartCount" hidden>0</span>
+          </a>
+
+        <div class="menu" data-menu>
+          <button
+            class="tab"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="ordersMenu"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> Orders <svg class="tab__chev" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m7 10 5 5 5-5z"/></svg>
+          </button>
+          <div class="menu__panel" id="ordersMenu" hidden>
+            <a class="menu__item" href="orders.html">All orders</a>
+            <a class="menu__item" href="#">Downloads</a>
+            <a class="menu__item" href="#">Invoices</a>
+          </div>
+        </div>
+
+        <a class="tab" href="tickets.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> Tickets
+        </a>
+      </div>
+    </nav>
+
+    <!-- ============================= Tickets ============================= -->
+    <main class="page page--orders">
+      <section class="orders" aria-labelledby="ordersTitle">
+        <div class="orders__head">
+          <h1 class="orders__title" id="ordersTitle">All orders</h1>
+          <p class="orders__sub" id="ordersSub">Everything this account has bought, newest first.</p>
+        </div>
+
+        <div class="orders__stats">
+          <div class="orders__stat">
+            <p class="orders__label">Orders</p>
+            <p class="orders__value" id="orderCount">0</p>
+          </div>
+          <div class="orders__stat">
+            <p class="orders__label">Spent</p>
+            <p class="orders__value" id="orderSpent">$0.00</p>
+          </div>
+        </div>
+
+        <div class="orders__scroll">
+          <table class="btable btable--orders">
+            <thead>
+              <tr>
+                <th scope="col">Order</th>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody id="orderRows"></tbody>
+          </table>
+        </div>
+
+        <p class="orders__empty" id="ordersEmpty" hidden>
+          No orders yet. Buy something from <a href="search.html">Goods</a> or
+          <a href="bundles.html">Bundles</a> and it will show up here.
+        </p>
+    </main>
+
+
+    <script src="assets/js/menu.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+    <script src="assets/js/menu.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+    <script src="assets/js/orders.js" defer></script>
+    <script src="assets/js/session.js" defer></script>
+    <script src="assets/js/session.js" defer></script>
+  </body>
+</html>
